@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* AIXCO Global — Ivory & Champagne light design system. All colors HSL. */
+
+@layer base {
+  :root {
+    /* Warm ivory & champagne light theme */
+    --background: 36 30% 97%;
+    --foreground: 220 25% 12%;
+
+    --surface: 36 28% 95%;
+    --surface-elevated: 0 0% 100%;
+    --surface-glass: 36 30% 98%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 12%;
+
+    /* Deep champagne gold = primary accent (darker for contrast on light bg) */
+    --primary: 36 55% 42%;
+    --primary-foreground: 36 30% 97%;
+    --primary-glow: 41 65% 55%;
+    --primary-deep: 32 60% 32%;
+
+    /* Muted teal as secondary accent */
+    --secondary: 185 32% 30%;
+    --secondary-foreground: 36 30% 97%;
+
+    --muted: 36 18% 90%;
+    --muted-foreground: 220 12% 38%;
+
+    --accent: 36 55% 42%;
+    --accent-foreground: 36 30% 97%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 36 30% 97%;
+
+    --success: 150 50% 38%;
+
+    --border: 36 16% 84%;
+    --input: 36 16% 88%;
+    --ring: 36 55% 42%;
+
+    --radius: 0.25rem;
+
+    /* Cinematic gradients (light) */
+    --gradient-hero: linear-gradient(180deg, hsl(36 30% 97% / 0.25) 0%, hsl(36 30% 97% / 0.7) 60%, hsl(36 30% 97%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(41 65% 55%) 0%, hsl(36 55% 42%) 50%, hsl(32 60% 32%) 100%);
+    --gradient-onyx: linear-gradient(180deg, hsl(36 30% 97%) 0%, hsl(36 28% 94%) 100%);
+    --gradient-glow: radial-gradient(60% 60% at 50% 0%, hsl(36 55% 42% / 0.12) 0%, transparent 70%);
+
+    /* Shadows (softer for light) */
+    --shadow-elegant: 0 30px 80px -30px hsl(220 25% 20% / 0.25);
+    --shadow-gold: 0 20px 60px -20px hsl(36 55% 42% / 0.3);
+    --shadow-soft: 0 10px 40px -20px hsl(220 25% 20% / 0.15);
+
+    /* Motion */
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    --transition-smooth: all 0.5s var(--ease-out-expo);
+
+    /* Sidebar (unused but kept) */
+    --sidebar-background: 36 30% 97%;
+    --sidebar-foreground: 220 25% 12%;
+    --sidebar-primary: 36 55% 42%;
+    --sidebar-primary-foreground: 36 30% 97%;
+    --sidebar-accent: 36 18% 90%;
+    --sidebar-accent-foreground: 220 25% 12%;
+    --sidebar-border: 36 16% 84%;
+    --sidebar-ring: 36 55% 42%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.35);
+    color: hsl(var(--foreground));
+  }
+
+  /* RTL */
+  [dir="rtl"] body {
+    font-family: 'Inter', 'Tahoma', sans-serif;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1320px] px-6 md:px-10;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] text-primary/90 font-medium;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 24px;
+    height: 1px;
+    background: hsl(var(--primary));
+    display: inline-block;
+  }
+
+  .heading-display {
+    font-family: 'Cormorant Garamond', serif;
+    @apply text-4xl md:text-6xl lg:text-7xl leading-[1.05] font-light tracking-tight;
+  }
+
+  .heading-section {
+    font-family: 'Cormorant Garamond', serif;
+    @apply text-3xl md:text-5xl leading-[1.08] font-light tracking-tight;
+  }
+
+  .text-gold {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .glass {
+    background: hsl(var(--surface-glass) / 0.55);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid hsl(var(--border) / 0.7);
+  }
+
+  .hairline {
+    @apply border-t border-border/70;
+  }
+
+  .link-underline {
+    @apply relative inline-block;
+  }
+  .link-underline::after {
+    content: "";
+    @apply absolute left-0 -bottom-0.5 h-px w-full origin-left scale-x-0 bg-primary transition-transform duration-500;
+    transition-timing-function: var(--ease-out-expo);
+  }
+  .link-underline:hover::after { @apply scale-x-100; }
+
+  .btn-gold {
+    background: var(--gradient-gold);
+    color: hsl(var(--primary-foreground));
+    @apply inline-flex items-center justify-center gap-2 rounded-sm px-6 py-3 text-sm font-medium tracking-wide transition-all;
+    box-shadow: 0 0 0 1px hsl(var(--primary) / 0.3), 0 10px 30px -12px hsl(var(--primary) / 0.5);
+  }
+  .btn-gold:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 0 1px hsl(var(--primary) / 0.5), 0 18px 40px -10px hsl(var(--primary) / 0.6);
+  }
+
+  .btn-ghost-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm px-6 py-3 text-sm font-medium tracking-wide transition-all border border-primary/40 text-primary;
+  }
+  .btn-ghost-gold:hover {
+    @apply border-primary bg-primary/10;
+  }
+
+  .data-panel {
+    @apply glass rounded-sm p-6 md:p-8 transition-all duration-500;
+  }
+  .data-panel:hover {
+    border-color: hsl(var(--primary) / 0.5);
+    transform: translateY(-2px);
+  }
+
+  .noise-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay;
+  }
+}
+
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: reveal 1s var(--ease-out-expo) forwards;
+  }
+  .reveal-delay-1 { animation-delay: 0.1s; }
+  .reveal-delay-2 { animation-delay: 0.25s; }
+  .reveal-delay-3 { animation-delay: 0.4s; }
+  .reveal-delay-4 { animation-delay: 0.55s; }
+
+  @keyframes reveal {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .float-slow { animation: float-slow 8s ease-in-out infinite; }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .shimmer-text {
+    background: linear-gradient(90deg, hsl(var(--foreground)) 0%, hsl(var(--primary)) 50%, hsl(var(--foreground)) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 6s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
