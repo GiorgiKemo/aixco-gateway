@@ -1,4 +1,5 @@
 import { ArrowRight, Play } from "lucide-react";
+import { createElement } from "react";
 import { useUI } from "../ui-state";
 import heroBatumi from "@/assets/hero-batumi.jpg";
 
@@ -19,7 +20,7 @@ export function Hero() {
       <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_50%,transparent_0%,hsl(var(--background))_100%)]" aria-hidden />
       <ConstructionAnimation />
 
-      <div className="relative container-x flex min-h-[100svh] flex-col justify-end pb-24 pt-32 md:pb-32">
+      <div className="relative z-10 container-x flex min-h-[100svh] flex-col justify-end pb-24 pt-32 md:pb-32">
         <div className="max-w-4xl">
           <p className="eyebrow reveal">AIXCO Global · Vienna · Dubai · Batumi</p>
           <h1 className="heading-display mt-6 reveal reveal-delay-1">
@@ -72,83 +73,19 @@ export function Hero() {
 }
 
 function ConstructionAnimation() {
-  const floors = [302, 267, 232, 197, 162, 127];
-  const windowColumns = [236, 278, 320, 362, 404];
-
   return (
     <div
-      className="construction-visual absolute right-[-26vw] top-[8vh] z-0 w-[min(112vw,620px)] opacity-70 sm:right-[-14vw] md:right-[-4vw] md:opacity-80 lg:right-[4vw] lg:top-[13vh] lg:w-[min(48vw,640px)] lg:opacity-95"
+      className="construction-lottie absolute right-[-24vw] top-[7vh] z-0 hidden aspect-[1080/869] w-[min(72vw,560px)] opacity-70 md:block lg:right-[-8vw] lg:top-[12vh] lg:w-[min(45vw,620px)] xl:right-[2vw] xl:w-[min(42vw,640px)]"
       aria-hidden="true"
     >
-      <svg viewBox="0 0 620 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="constructionGold" x1="220" y1="92" x2="452" y2="380" gradientUnits="userSpaceOnUse">
-            <stop stopColor="hsl(var(--primary-glow))" stopOpacity="0.95" />
-            <stop offset="1" stopColor="hsl(var(--primary-deep))" stopOpacity="0.78" />
-          </linearGradient>
-          <linearGradient id="constructionGlass" x1="236" y1="124" x2="430" y2="344" gradientUnits="userSpaceOnUse">
-            <stop stopColor="white" stopOpacity="0.82" />
-            <stop offset="1" stopColor="hsl(var(--surface-glass))" stopOpacity="0.28" />
-          </linearGradient>
-          <filter id="constructionBlur" x="120" y="40" width="420" height="390" filterUnits="userSpaceOnUse">
-            <feGaussianBlur stdDeviation="16" />
-          </filter>
-        </defs>
-
-        <ellipse cx="330" cy="372" rx="210" ry="42" fill="hsl(var(--primary) / 0.14)" filter="url(#constructionBlur)" />
-        <path className="construction-ground" d="M128 382H512" />
-
-        <g className="construction-crane">
-          <path d="M490 92V366" />
-          <path d="M346 92H562" />
-          <path d="M490 92L430 142" />
-          <path d="M490 92L540 142" />
-          <path d="M462 124H518" />
-          <rect x="542" y="78" width="42" height="26" rx="3" />
-          <rect x="464" y="356" width="56" height="16" rx="2" />
-        </g>
-
-        <g className="construction-hook">
-          <path d="M386 92V162" />
-          <path d="M374 176C374 168 380 162 386 162C392 162 398 168 398 176C398 184 392 190 386 190" />
-          <g className="construction-load">
-            <rect x="348" y="202" width="76" height="20" rx="3" />
-            <path d="M348 202L386 176L424 202" />
-          </g>
-        </g>
-
-        <g className="construction-core">
-          <rect x="224" y="106" width="214" height="258" rx="10" fill="url(#constructionGlass)" />
-          <path d="M250 106V364M292 106V364M334 106V364M376 106V364M418 106V364" />
-        </g>
-
-        {floors.map((y, floorIndex) => (
-          <g key={y} transform={`translate(0 ${y})`}>
-            <g className="construction-floor" style={{ animationDelay: `${0.18 + floorIndex * 0.22}s` }}>
-              <rect x="204" y="0" width="254" height="31" rx="4" fill="hsl(var(--surface-glass) / 0.72)" />
-              <rect x="212" y="2" width="238" height="4" rx="2" fill="url(#constructionGold)" />
-              {windowColumns.map((x, columnIndex) => (
-                <rect
-                  key={`${y}-${x}`}
-                  className="construction-window"
-                  x={x}
-                  y="10"
-                  width="18"
-                  height="12"
-                  rx="2"
-                  style={{ animationDelay: `${floorIndex * 0.18 + columnIndex * 0.11}s` }}
-                />
-              ))}
-            </g>
-          </g>
-        ))}
-
-        <g className="construction-roof">
-          <path d="M204 118H458" />
-          <path d="M224 98H438" />
-          <path d="M244 82H418" />
-        </g>
-      </svg>
+      {createElement("dotlottie-wc", {
+        src: "/city-building-construction.lottie",
+        autoplay: "true",
+        loop: "true",
+        speed: "0.85",
+        "aria-hidden": "true",
+        style: { display: "block", width: "100%", height: "100%" },
+      })}
     </div>
   );
 }

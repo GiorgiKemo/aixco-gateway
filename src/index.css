@@ -198,97 +198,10 @@
     mix-blend-mode: overlay;
   }
 
-  .construction-visual {
+  .construction-lottie {
     pointer-events: none;
     transform: translateZ(0);
-    filter: drop-shadow(0 28px 55px hsl(var(--foreground) / 0.16));
-  }
-
-  .construction-visual svg {
-    overflow: visible;
-  }
-
-  .construction-ground {
-    stroke: hsl(var(--primary) / 0.34);
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-dasharray: 8 12;
-    animation: construction-ground 5s linear infinite;
-  }
-
-  .construction-crane path,
-  .construction-crane rect {
-    stroke: hsl(var(--primary-deep) / 0.7);
-    stroke-width: 4;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .construction-crane rect {
-    fill: hsl(var(--surface-glass) / 0.55);
-  }
-
-  .construction-hook {
-    stroke: hsl(var(--primary-deep) / 0.72);
-    stroke-width: 3;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    transform-box: view-box;
-    transform-origin: 386px 92px;
-    animation: construction-hook 4.8s ease-in-out infinite;
-  }
-
-  .construction-load rect {
-    fill: hsl(var(--primary) / 0.26);
-    stroke: hsl(var(--primary-deep) / 0.5);
-  }
-
-  .construction-load {
-    transform-box: fill-box;
-    transform-origin: center;
-    animation: construction-load 4.8s var(--ease-out-expo) infinite;
-  }
-
-  .construction-core {
-    transform-box: fill-box;
-    transform-origin: center bottom;
-    animation: construction-core-rise 1.2s var(--ease-out-expo) both;
-  }
-
-  .construction-core path {
-    stroke: hsl(var(--primary-deep) / 0.12);
-    stroke-width: 1.5;
-  }
-
-  .construction-floor {
-    opacity: 0;
-    transform: translateY(28px) scaleY(0.92);
-    transform-box: fill-box;
-    transform-origin: center bottom;
-    animation: construction-floor-rise 0.9s var(--ease-out-expo) forwards;
-  }
-
-  .construction-floor > rect:first-child {
-    stroke: hsl(var(--primary) / 0.24);
-    stroke-width: 1;
-    backdrop-filter: blur(12px);
-  }
-
-  .construction-window {
-    fill: hsl(var(--primary-glow) / 0.24);
-    animation: construction-window-glow 3.6s ease-in-out infinite;
-  }
-
-  .construction-roof {
-    stroke: hsl(var(--primary-deep) / 0.62);
-    stroke-width: 5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    opacity: 0;
-    transform: translateY(18px);
-    transform-box: fill-box;
-    transform-origin: center bottom;
-    animation: construction-roof-set 0.9s var(--ease-out-expo) 1.45s forwards;
+    filter: drop-shadow(0 28px 55px hsl(var(--foreground) / 0.12));
   }
 }
 
@@ -324,39 +237,6 @@
     background-clip: text;
     color: transparent;
     animation: shimmer 6s linear infinite;
-  }
-
-  @keyframes construction-core-rise {
-    from { opacity: 0; transform: scaleY(0.2); }
-    to { opacity: 1; transform: scaleY(1); }
-  }
-
-  @keyframes construction-floor-rise {
-    to { opacity: 1; transform: translateY(0) scaleY(1); }
-  }
-
-  @keyframes construction-roof-set {
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes construction-window-glow {
-    0%, 100% { fill: hsl(var(--primary-glow) / 0.18); }
-    45% { fill: hsl(var(--primary-glow) / 0.74); }
-  }
-
-  @keyframes construction-hook {
-    0%, 100% { transform: rotate(-2deg) translateY(0); }
-    50% { transform: rotate(2.4deg) translateY(8px); }
-  }
-
-  @keyframes construction-load {
-    0% { opacity: 0; transform: translate(48px, -34px) scale(0.94); }
-    18%, 64% { opacity: 1; transform: translate(0, 0) scale(1); }
-    100% { opacity: 0; transform: translate(-22px, 62px) scale(0.96); }
-  }
-
-  @keyframes construction-ground {
-    to { stroke-dashoffset: -40; }
   }
 
   @media (prefers-reduced-motion: reduce) {
