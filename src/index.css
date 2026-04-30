@@ -203,6 +203,46 @@
     transform: translateZ(0);
     filter: drop-shadow(0 28px 55px hsl(var(--foreground) / 0.12));
   }
+
+  [data-reveal-root="armed"] {
+    --reveal-ease: cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  [data-reveal="true"] {
+    opacity: 0;
+    transform: translate3d(0, 72px, 0) scale(0.965);
+    transform-origin: center top;
+    transition:
+      opacity 1300ms var(--reveal-ease),
+      transform 1450ms var(--reveal-ease);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  [data-reveal="true"][data-reveal-state="visible"] {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  [data-reveal-media="true"] {
+    overflow: hidden;
+    transform: scale(1.018);
+    transition: transform 1500ms var(--reveal-ease);
+    will-change: transform;
+  }
+
+  [data-reveal-state="visible"] [data-reveal-media="true"],
+  [data-reveal-media="true"][data-reveal-state="visible"] {
+    transform: scale(1);
+  }
+
+  [data-reveal-media="true"] > img {
+    transition: transform 1600ms var(--reveal-ease), filter 1600ms var(--reveal-ease);
+  }
+
+  [data-reveal-media="true"]:hover > img {
+    transform: scale(1.035);
+  }
 }
 
 @layer utilities {
@@ -240,9 +280,28 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      transition-duration: 0.01ms !important;
+    html {
+      scroll-behavior: auto;
+    }
+
+    .reveal {
+      transform: translateY(8px);
+      animation-duration: 450ms;
+    }
+
+    [data-reveal="true"] {
+      transform: translate3d(0, 18px, 0) scale(0.992);
+      transition-duration: 520ms;
+      transition-delay: 0ms;
+    }
+
+    [data-reveal="true"][data-reveal-state="visible"] {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    [data-reveal-media="true"] {
+      transform: scale(1.006);
+      transition-duration: 520ms;
     }
   }
 }

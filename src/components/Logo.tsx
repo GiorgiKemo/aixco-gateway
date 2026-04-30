@@ -10,7 +10,7 @@ export function Logo({ className = "" }: { className?: string }) {
         alt="AIXCO Global"
         width={3584}
         height={747}
-        className="h-8 w-auto md:h-9"
+        className="h-7 w-auto sm:h-8 md:h-9"
         draggable={false}
       />
     </Link>
