@@ -3,6 +3,8 @@ import { createElement } from "react";
 import { useUI } from "../ui-state";
 import heroBatumi from "@/assets/hero-batumi.jpg";
 
+const constructionAnimationSrc = `${import.meta.env.BASE_URL}city-building-construction.lottie`;
+
 export function Hero() {
   const { openRegister } = useUI();
   return (
@@ -79,7 +81,7 @@ function ConstructionAnimation() {
       aria-hidden="true"
     >
       {createElement("dotlottie-wc", {
-        src: "/city-building-construction.lottie",
+        src: constructionAnimationSrc,
         autoplay: "true",
         loop: "true",
         speed: "0.85",
